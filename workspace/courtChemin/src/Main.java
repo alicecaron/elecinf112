@@ -34,14 +34,14 @@ public class Main {
 			ObjectMapper mapper = new ObjectMapper();
 			jsonList = mapper.readValue(jsonREQ.getJsonString(),LinkedList.class);
 			metro = new GraphURL(jsonList).graph;
-			Chemin path = new Chemin(args, metro);
+			new Chemin(args, metro);
 		}
 		else{
 			try{
 				Reader reader = new FileReader(args[0]);
 				BufferedReader buffer = new BufferedReader(reader);
 				metro = new GraphMetro(buffer).graph;
-				Chemin path = new Chemin(args, metro);
+				new Chemin(args, metro);
 			}catch(IOException e){
 				System.err.println("Unable to get file \""+args[0]+"\"");
 				System.exit(0);

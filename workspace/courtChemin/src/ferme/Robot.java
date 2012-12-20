@@ -1,7 +1,6 @@
 package ferme;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,8 +15,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.enst.transports.ServerSocket;
 
 public class Robot {
-
-
 	private Map<String,String> commandList = new HashMap<String,String>();
 	private ServerSocket socket;
 	private SensorState robotSensors;
@@ -40,26 +37,28 @@ public class Robot {
 	}
 	
 	public void left_hand() throws Exception{
-		if(canTurnLeft()){
-			update("turnL");
-			update("move");
-		}
-		else{
-			//update("uTurn");
-			if(canMove())
+		while(true){
+			if(canTurnLeft()){
+				update("turnL");
 				update("move");
+			}
 			else{
-				if(canTurnLeft()){
-					update("turnL");
+				//update("uTurn");
+				if(canMove())
 					update("move");
-				}
 				else{
-					update("uTurn");
-					if(canMove())
+					if(canTurnLeft()){
+						update("turnL");
 						update("move");
-					else
-						System.err.println("WARNING : Robot can not turn or move!");
-				}	
+					}
+					else{
+						update("uTurn");
+						if(canMove())
+							update("move");
+						else
+							System.err.println("WARNING : Robot can not turn or move!");
+					}	
+				}
 			}
 		}
 	}
@@ -84,15 +83,6 @@ public class Robot {
 	
 	public String orientation(int direction){
 		String dir=new String();
-		String[] table={"move","turnR","uTurn","turnL"};
-//		String[] newTable = null;
-//		
-//		for(int i=0;i<0;i--)
-//			if(i>=orientation)
-//				newTable[3-i]=table[i];
-//			else
-//				newTable[i]=table[i];
-//		
 		if(orientation==direction)dir="move";
 		else if((orientation==0 && direction==1)||(orientation==1 && direction==2)||(orientation==2 && direction==3)||(orientation==3 && direction==0))
 			dir="turnR";
@@ -101,9 +91,7 @@ public class Robot {
 		else if((orientation==0 && direction==3)||(orientation==1 && direction==0)||(orientation==2 && direction==1)||(orientation==3 && direction==2))
 			dir="turnL";
 
-
 /*
-		
 		switch(orientation){
 		case 0:
 			if(direction==0)dir = "move";
@@ -134,14 +122,15 @@ public class Robot {
 		orientation=direction;
 		return dir;
 	}
-	
 	public void update(String order) throws JsonParseException, JsonMappingException, IOException{
 		if(order.equals("move"))
-			System.out.println("I Move!");
+			System.out.println("I move!");
 		else if(order.equals("turnL"))
-			System.out.println("I Turn Left!");
+			System.out.println("I Turn left!");
 		else if(order.equals("turnR"))
-			System.out.println("I Turn Right!");
+			System.out.println("I Turn right!");
+		else if(order.equals("uTurn"))
+			System.out.println("I Turn back!");
 		else 
 			System.out.println("PROBLEM : command not found : "+order);
 		socket.sendOrder(commandList.get(order));
@@ -155,7 +144,6 @@ public class Robot {
 		else
 			return false;
 	}
-	
 	public boolean canTurnLeft() throws JsonParseException, JsonMappingException, IOException{
 		System.out.println(socket.getJsonString());
 		if(robotSensors.getSensors().get(0)==255)
@@ -163,5 +151,4 @@ public class Robot {
 		else
 			return false;
 	}
-
 }

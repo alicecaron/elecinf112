@@ -23,7 +23,7 @@ public class Ferme {
 		
 		//lefthand
 		Robot robot = new Robot();
-		//robot.left_hand();
-		robot.pathToArrival(path.getShortestPath());
+		robot.left_hand();
+		//robot.pathToArrival(path.getShortestPath());
 	}
 }
