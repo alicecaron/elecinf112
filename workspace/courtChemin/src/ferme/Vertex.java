@@ -85,12 +85,3 @@ public class Vertex implements VertexInterface{
 		return reachableNeighbours;
 	}
 }
-
-
-
-
-
-
-
-
-

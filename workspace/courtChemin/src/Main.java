@@ -29,7 +29,7 @@ public class Main {
 			//import map from server with a 0mq socket
 			ServerSocket jsonREQ = new ServerSocket(args[0], "{ \"request\" : \"map\" }");
 			
-			//jsonMap a déjsonifier
+			//jsonMap to deserialize
 			LinkedList<ArrayList<String>> jsonList;
 			ObjectMapper mapper = new ObjectMapper();
 			jsonList = mapper.readValue(jsonREQ.getJsonString(),LinkedList.class);

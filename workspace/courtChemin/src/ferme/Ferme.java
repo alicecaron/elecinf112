@@ -21,9 +21,8 @@ public class Ferme {
 		GraphMap graph = new GraphMap(jsonList);
 		Chemin path = new Chemin(args, graph);
 		
-		//lefthand
 		Robot robot = new Robot();
 		robot.left_hand();
-		//robot.pathToArrival(path.getShortestPath());
+		robot.pathToArrival(path.getShortestPath());
 	}
 }

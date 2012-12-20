@@ -62,7 +62,7 @@ public class Graph implements IGraph{
 	@Override
 	public ArrayList<VertexInterface> getNeighbours(VertexInterface iStation) {
 		Station station = (Station) iStation;
-		return station.getNeighbours();
+		return station.getReachableNeighbours();
 	}
 	@Override
 	public int getWeight(VertexInterface departure, VertexInterface arrrival) {

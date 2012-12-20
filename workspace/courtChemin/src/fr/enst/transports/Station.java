@@ -11,7 +11,8 @@ public class Station implements VertexInterface {
 	private ArrayList<VertexInterface> neighbours;
 	
 	public Station(String label){
-		this.label=label;	
+		this.label=label;
+		reachable = true;
 		this.neighbours = new ArrayList<VertexInterface>();
 	}
 	@Override
@@ -27,9 +28,8 @@ public class Station implements VertexInterface {
 		return neighbours;
 	}
 	@Override
-	public void setReachable(boolean reach) {
-		// TODO Auto-generated method stub
-		
+	public void setReachable(boolean reach){
+		this.reachable=reach;
 	}
 	@Override
 	public boolean isReachable(){
@@ -46,6 +46,6 @@ public class Station implements VertexInterface {
 	@Override
 	public int length(VertexInterface arrival) {
 		// TODO Auto-generated method stub
-		return 0;
+		return 1;
 	}
 }

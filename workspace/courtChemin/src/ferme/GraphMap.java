@@ -64,12 +64,6 @@ public class GraphMap implements IGraph{
 			}
 
 			start.addNeighbour(end);
-//			System.out.println("Ajout de " + end.getLabel() + " comme voisin de " + start.getLabel());
-//			
-//			System.out.println("Sommet "+start.getLabel());
-//			for(VertexInterface vert : start.getNeighbours())
-//				System.out.println("voisin : "+vert.getLabel());
-
 			end.addNeighbour(start);
 		}
 	}
