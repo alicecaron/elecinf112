@@ -84,7 +84,7 @@ public class Robot {
 	
 	public String orientation(int direction){
 		String dir=new String();
-//		String[] table={"move","turnR","uTurn","turnL"};
+		String[] table={"move","turnR","uTurn","turnL"};
 //		String[] newTable = null;
 //		
 //		for(int i=0;i<0;i--)
@@ -93,6 +93,16 @@ public class Robot {
 //			else
 //				newTable[i]=table[i];
 //		
+		if(orientation==direction)dir="move";
+		else if((orientation==0 && direction==1)||(orientation==1 && direction==2)||(orientation==2 && direction==3)||(orientation==3 && direction==0))
+			dir="turnR";
+		else if((orientation==0 && direction==2)||(orientation==1 && direction==3)||(orientation==2 && direction==0)||(orientation==3 && direction==1))
+			dir="uTurn";
+		else if((orientation==0 && direction==3)||(orientation==1 && direction==0)||(orientation==2 && direction==1)||(orientation==3 && direction==2))
+			dir="turnL";
+
+
+/*
 		
 		switch(orientation){
 		case 0:
@@ -120,6 +130,7 @@ public class Robot {
 			else if(direction==3)dir = "move";
 			break;
 		}
+		//*/
 		orientation=direction;
 		return dir;
 	}

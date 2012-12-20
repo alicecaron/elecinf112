@@ -87,7 +87,7 @@ public class GraphMap implements IGraph{
 	}
 	@Override
 	public ArrayList<VertexInterface> getNeighbours(VertexInterface vertex) {
-		return (ArrayList<VertexInterface>) vertex.getNeighbours();
+		return (ArrayList<VertexInterface>) vertex.getReachableNeighbours();
 	}
 	@Override
 	public int getWeight(VertexInterface departure, VertexInterface arrival) {

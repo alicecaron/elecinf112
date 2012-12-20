@@ -18,6 +18,7 @@ public class Vertex implements VertexInterface{
 	public Vertex(String label){
 		this.label=label;
 		neighbours = new ArrayList<VertexInterface>();
+		reachable = true;
 	}
 	public Edge getWest() {return west;}
 	public void setWest(Edge edge) {this.west = edge;}
